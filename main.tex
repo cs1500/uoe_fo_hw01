@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\geometry{
+    a4paper,
+    left=20mm,
+    right=20mm,
+    top=20mm,
+    bottom=20mm
+}
+
+\title{fo hw01}
+\author{cs}
+\date{October 2025}
+
+\begin{document}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Question 5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{5.1}
+We first show that the epigraph of the following function is a polyhedron:
+$$f(x)=\max_{i=1,\dots,m}\{(a^i)^T x+b_i\}.$$
+Using the definition of the epigraph set:
+$$\text{epi}(f)
+=\{(x,z)\in\text{dom}(f)\times
+\mathbb{R}\hspace{0.03in}|\hspace{0.03in}z\geq f(x)\}$$
+we see that the condition $z\geq f(x)$ unpacks into:
+$$z\geq\max_i\{(a^i)^T x+b_i\}$$
+which in turn defines a sequence of inequalities:
+$$z\geq(a^1)^T x+b_1$$
+$$z\geq(a^2)^T x+b_2$$
+$$\dots$$
+$$z\geq(a^m)^T x+b_m.$$
+Specifying more than one condition requires the intersection of their respective
+partitions; each inequality of linear form defines a halfspace, and so we have an
+intersection of a finite number of halfspaces, exactly the definition of a
+polyhedron.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{5.2}
+We can use the fact that the function $f$ is convex if and only if the epigraph
+of $f$, $\text{epi}(f)$, is convex (this is proposition 3.1 in the notes). Yet
+we have shown previously that $\text{epi}(f)$ is a polyhedron, and all 
+polyhedrons are by default convex (remark 6.2). We proceed to verify this for our
+$\text{epi}(f)$. We need that $\forall\lambda\in[0,1]$ and
+$\forall (x,t),(y,s)\in\text{epi}(f)$, that
+$\lambda(x,t)+(1-\lambda)(y,s)\in\text{epi}(f)$, or that:
+$$\lambda t+(1-\lambda)s\geq f\Bigl(\lambda x+(1-\lambda)y\Bigr)$$
+which after substitution, our goal unpacks into:
+$$\lambda t+(1-\lambda)s\geq
+\max_i\{\lambda(a^i)^T x+(1-\lambda)(a^i)^T y+b_i\}$$
+$$\lambda t+(1-\lambda)s\geq
+\max_i\{\lambda\Bigl((a^i)^T x+b_i\Bigr)+
+(1-\lambda)\Bigl((a^i)^T y+b_i\Bigr)\}.$$
+This form is useful, since we already know that:
+$$t\geq\max_i\{(a^i)^T x+b_i\}$$
+$$s\geq\max_i\{(a^i)^T y+b_i\}$$
+and using the fact that $\max{a}+\max{b}\geq\max{(a+b)}$:
+\begin{align*}
+    \lambda t+(1-\lambda)s
+    &\geq\lambda\max_i\{(a^i)^T x+b_i\}+(1-\lambda)\max_i\{(a^i)^T y+b_i\} \\
+    &\geq\max_i\{\lambda\Bigl((a^i)^T x+b_i\Bigr)+
+    (1-\lambda)\Bigl((a^i)^T y+b_i\Bigr)\}
+\end{align*}
+which is exactly our initial goal. Therefore $\text{epi}(f)$ is convex, and so
+$f$ is a convex function.
+
+\end{document}
